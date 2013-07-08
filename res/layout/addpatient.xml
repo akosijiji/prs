@@ -2,13 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/gradient_red" >
+    
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/custom_addpatient_bar" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingBottom="15dp"
+        android:padding="7dp"
+        android:layout_weight="1"
+        android:background="@drawable/gradient_background">
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/firstname"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -16,7 +38,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text" >
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:inputType="text"
+        android:padding="5dp" >
 
         <requestFocus />
     </EditText>
@@ -26,13 +52,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lastname"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/etLastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:padding="5dp"
         android:inputType="text" />
 
     <TextView
@@ -40,6 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bday"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -47,6 +81,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:padding="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:inputType="date" />
 
     <TextView
@@ -54,6 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/telphone"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -61,6 +101,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:padding="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:inputType="phone" />
 
     <TextView
@@ -68,6 +112,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lastffup"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -75,18 +121,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:padding="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:inputType="date" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#F8E0E6" >
 
     <Button
         android:id="@+id/btSavePatient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/save" />
+        android:text="@string/save"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_button" />
 
     <Button
         android:id="@+id/btCancelPatient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cancel" />
+        android:text="@string/cancel"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_button" />
+    
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,42 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".MainActivity" >
 
     <TextView
         android:id="@+id/textView1"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="17dp"
         android:text="@string/welcomenote"
         android:textSize="15sp" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+		android:gravity="center"
+		android:layout_weight="2" >
+        
+        
     <Button
         android:id="@+id/btViewAllPatients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignBaseline="@+id/btAddPatient"
-        android:layout_alignBottom="@+id/btAddPatient"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_marginRight="65dp"
+        android:layout_margin="15dp"
         android:background="@drawable/medical_record" />
 
     <Button
         android:id="@+id/btAddPatient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="41dp"
-        android:layout_toLeftOf="@+id/btViewAllPatients"
+        android:layout_margin="15dp"
         android:background="@drawable/medicine" />
+        
+        
+    </LinearLayout>
 
-</RelativeLayout>
+    
+
+</LinearLayout>

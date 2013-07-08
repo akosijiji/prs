@@ -26,7 +26,8 @@
         android:layout_centerVertical="true"
         android:textColor="@color/red"
         android:textStyle="bold"
-        android:text="@string/viewrecord"
+        android:drawableLeft="@drawable/patient_male"
+        android:text="@string/addpatient"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

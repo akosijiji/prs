@@ -2,20 +2,65 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/gradient_red" >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8E0E6">
 
     <EditText
+        android:padding="5dp"
+        android:background="@drawable/rounded_edittext"
         android:inputType="text"
         android:hint="@string/searchfirstname"
         android:id="@+id/etSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_margin="10dp"
         android:drawableLeft="@drawable/search" >
         <requestFocus />
     </EditText>
+    
+    </LinearLayout>
+    
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp" >
+    
+        <TextView
+            android:id="@+id/tvNameContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="2dip"
+            android:layout_weight="0.29"
+            android:textColor="#FFF"
+            android:gravity="center_horizontal"
+            android:text="@string/fullname"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDiagnosisContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_weight="0.57"
+            android:gravity="center_horizontal"
+            android:text="@string/diagnosis"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+</LinearLayout>
 
     <ListView
+        android:background="@drawable/listview_viewallpatients"
+        android:layout_margin="10dp"
         android:id="@+id/lvListOfPatients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >

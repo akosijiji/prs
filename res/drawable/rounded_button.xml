@@ -4,21 +4,21 @@ android:shape="rectangle" android:padding="10dp">
 <!-- you can use any color you want I used here gray color-->
  <solid android:color="#ffffff"/> 
     <corners
-     android:bottomRightRadius="5dp"
-     android:bottomLeftRadius="5dp"
-  	 android:topLeftRadius="5dp"
-  	 android:topRightRadius="5dp"/>
+     	android:bottomRightRadius="5dp"
+     	android:bottomLeftRadius="5dp"
+  	 	android:topLeftRadius="5dp"
+  	 	android:topRightRadius="5dp"/>
     
     <gradient
-    android:startColor="#ffffff"
-    android:endColor="#ffffff" />
+        android:angle="270"
+    	android:endColor="#BDBDBD"
+    	android:startColor="#F2F2F2" />
     
     <padding
-    android:left="2dp"
-    android:top="2dp"
-    android:right="2dp"
-    android:bottom="2dp" />
+    	android:left="2dp"
+    	android:top="2dp"
+    	android:right="2dp"
+    	android:bottom="2dp" />
     
-    <stroke android:width="0.5dp" android:color="#000000"/>
     
 </shape>
