@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ichthus.patientrecordsystem"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+    <supports-screens android:largeScreens="true" 
+        android:xlargeScreens="true" 
+        android:resizeable="true" 
+        android:normalScreens="true" 
+        android:anyDensity="true" 
+        android:smallScreens="true"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.ichthus.patientrecordsystem.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:exported="false"
+            android:name=".AddPatient" >
+            <intent-filter >
+            <action android:name="com.ichthus.patientrecordsystem.ADDPATIENT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:exported="false"
+            android:name=".ViewAllPatients" >
+            <intent-filter >
+            <action android:name="com.ichthus.patientrecordsystem.VIEWALLPATIENTS" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:exported="false"
+            android:name="com.ichthus.patientrecordsystem.ViewPatient" >
+            <intent-filter >
+            <action android:name="com.ichthus.patientrecordsystem.VIEWPATIENT" />
+            </intent-filter>
+        </activity>
+        
+
+        
+		<activity android:exported="false"
+            android:name=".Test"
+            android:theme="@style/AppTheme" >
+            <intent-filter >
+            <action android:name="com.ichthus.patientrecordsystem.TEST" />
+            </intent-filter>
+        </activity>
+        
+
+        
+    </application>
+
+</manifest>

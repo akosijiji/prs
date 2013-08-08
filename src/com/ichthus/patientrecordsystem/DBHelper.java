@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -20,6 +21,7 @@ public class DBHelper extends SQLiteOpenHelper{
 	private static String DB_PATH = "/data/data/com.ichthus.patientrecordsystem/databases/";
 	private static String DB_NAME = "patientdb";
 	static String KEY_ID = "_id";
+	static String KEY_BDAY = "Bday";
 	static String KEY_FNAME = "FirstName";
 	static String KEY_LNAME = "LastName";
 	static String KEY_TELNO = "TelNo";
@@ -38,7 +40,6 @@ public class DBHelper extends SQLiteOpenHelper{
 	static String KEY_ABDOMEN = "Abdomen";
 	static String KEY_URINEORPROSTATE = "UrineOrProstate";
 	static String KEY_GOUT = "Gout";
-	static String KEY_THYROIDANDVITAMINS = "ThyroidAndVitamins";
 	static String KEY_VACCINATIONS = "Vaccinations";
 	static String KEY_PRESCRIPTION = "Prescription";
 	static String KEY_CBCBLDTYPEORCHEM = "CBCBldTypeOrChem";
@@ -155,9 +156,11 @@ public class DBHelper extends SQLiteOpenHelper{
 
 	public void openDataBase() throws SQLException{
 		//Open the database
+		myDataBase = this.getWritableDatabase();
 		String myPath = DB_PATH + DB_NAME;
 		myDataBase = SQLiteDatabase.openDatabase(myPath, null, 
-				SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.OPEN_READONLY);
+				SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.OPEN_READWRITE);
+		
 	}
 
 	@Override
@@ -177,19 +180,71 @@ public class DBHelper extends SQLiteOpenHelper{
 
 	public Cursor getAllPatients()
 	{
-	    Cursor localCursor = 
+	    Cursor localCursor = //  
 	    		this.myDataBase.query(DB_TABLE, new String[] { 
-	    				KEY_ID, KEY_FNAME, KEY_LNAME, KEY_DIAGNOSIS }, null, null, null, null, null);
+	    				KEY_ID, KEY_FNAME + "|| ' ' ||" + KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP }, null, null, null, null, null);
+
 	    if (localCursor != null)
 	      localCursor.moveToFirst();
 	    return localCursor;
 	}
 	
-	
-	// Add your public helper methods to access and get content from the database.
-	// You could return cursors by doing "return myDataBase.query(....)" so it'd be easy
-	// to you to create adapters for your views.
+	public String[] getAllItemFilter()
+    {
+        Cursor cursor = this.myDataBase.query(DB_TABLE, new String[] {KEY_FNAME}, null, null, null, null, null);
 
+        if(cursor.getCount() >0)
+        {
+            String[] str = new String[cursor.getCount()];
+            int i = 0;
+
+            while (cursor.moveToNext())
+            {
+                 str[i] = cursor.getString(cursor.getColumnIndex(KEY_FNAME));
+                 i++;
+             }
+            return str;
+        }
+        else
+        {
+            return new String[] {};
+        }
+    }
+	
+	public long insert( String fname, String lname, String bday, String telno, String lastffup,
+			String diagnosis, String bp, String heart, String diabetes, String lung, String brain,
+			String muscle, String abdomen, String urine, String gout, String prescription ) {
+		// TODO Auto-generated method stub
+	
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_FNAME, fname);
+		cv.put(KEY_LNAME, lname);
+		cv.put(KEY_BDAY, bday);
+		cv.put(KEY_TELNO, telno);
+		cv.put(KEY_LASTFFUP, lastffup);
+		cv.put(KEY_DIAGNOSIS, diagnosis);
+		cv.put(KEY_BP, bp);
+		cv.put(KEY_HEART, heart);
+		cv.put(KEY_DIABETES, diabetes);
+		cv.put(KEY_LUNG, lung);
+		cv.put(KEY_BRAINORNERVE, brain);
+		cv.put(KEY_MUSCLE, muscle);
+		cv.put(KEY_ABDOMEN, abdomen);
+		cv.put(KEY_URINEORPROSTATE, urine);
+		cv.put(KEY_GOUT, gout);
+		cv.put(KEY_PRESCRIPTION, prescription);
+		
+		return myDataBase.insert(DB_TABLE, null, cv);
+		
+	}
+
+	public void updateEntry( long lId, String mFname ) {
+		// TODO Auto-generated method stub
+		ContentValues cvUpdate = new ContentValues();
+		
+		cvUpdate.put(KEY_FNAME, mFname);
+		myDataBase.update(DB_TABLE, cvUpdate, KEY_ID + " = lId", null);
+	}
 
 
 }

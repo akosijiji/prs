@@ -27,14 +27,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:background="@drawable/medical_record" />
+        android:background="@drawable/medical_record_xlarge" />
 
     <Button
         android:id="@+id/btAddPatient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:background="@drawable/medicine" />
+        android:background="@drawable/medicine_normal" />
         
         
     </LinearLayout>

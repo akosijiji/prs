@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="#F8E0E6">
 
-    <EditText
+    <AutoCompleteTextView
         android:padding="5dp"
         android:background="@drawable/rounded_edittext"
         android:inputType="text"
@@ -20,9 +20,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_margin="10dp"
-        android:drawableLeft="@drawable/search" >
+        android:drawableLeft="@drawable/search_small" >
         <requestFocus />
-    </EditText>
+    </AutoCompleteTextView>
     
     </LinearLayout>
     
@@ -61,6 +61,8 @@
     <ListView
         android:background="@drawable/listview_viewallpatients"
         android:layout_margin="10dp"
+        android:cacheColorHint="#0000"
+        android:listSelector="#0000"
         android:id="@+id/lvListOfPatients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >

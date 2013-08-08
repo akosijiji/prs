@@ -26,5 +26,15 @@
     <string name="age">Age:</string>
     <string name="viewrecord">View Record</string>
     <string name="about">About</string>
+    <string name="bp">BP</string>
+    <string name="heart">Heart Rate</string>
+    <string name="diabetes">Diabetes</string>
+    <string name="lung">Lung</string>
+    <string name="brain">Brain/Nerve</string>
+    <string name="muscle">Muscle</string>
+    <string name="abdomen">Abdomen</string>
+    <string name="urine">Urine/Prostate</string>
+    <string name="gout">Gout</string>
+    <string name="vaccination">Vaccination</string>
 
 </resources>

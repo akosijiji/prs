@@ -15,12 +15,13 @@
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="5dip"
         android:orientation="horizontal"
 		android:gravity="center"
 		android:background="@drawable/listview_rounded_corners"
 		android:layout_marginLeft="10dp"
      	android:layout_marginRight="10dp"
-     	android:layout_marginBottom="20dp"
+     	android:layout_marginBottom="10dp"
      	android:layout_marginTop="5dp" >
 		
     <GridView
@@ -28,10 +29,11 @@
      	android:layout_width="match_parent"
      	android:layout_height="match_parent"
      	android:numColumns="2"
+     	android:cacheColorHint="#0000"
      	android:verticalSpacing="10dp"
      	android:horizontalSpacing="10dp"
-     	android:columnWidth="90dp"
-     	android:stretchMode="columnWidth"
+     	android:columnWidth="100dp"
+     	android:stretchMode="spacingWidthUniform"
      	android:gravity="center"/>
        
         

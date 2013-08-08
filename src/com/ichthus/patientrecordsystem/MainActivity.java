@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,24 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	
 	GridView gridview;
 	
-	Integer imageIDs[] = {
-			R.drawable.medical_record,
-			R.drawable.medicine,
-			R.drawable.medical_record,
-			R.drawable.medicine
+	static final String[] TITLES = {
+		"Sample", 
+		"Add Patient",
+		"View Patients",
+		"View Patients"
+	};
+	
+	static Integer imageIDs[] = {
+			R.drawable.medical_record_xlarge,
+			R.drawable.medicine_xlarge,
+			R.drawable.medical_record_xlarge,
+			R.drawable.medicine_xlarge
 	};
 
 	@Override
@@ -75,6 +84,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	/*
 	public class ImageAdapter extends BaseAdapter
 	{
 	    private Context context;
@@ -117,6 +127,57 @@ public class MainActivity extends Activity {
 	        return imageView;
 	    }
 	    
-	    }
+	    } */
+	
+	private static class ImageAdapter extends BaseAdapter{
+        private LayoutInflater mLayoutInflater;
+        public ImageAdapter(Context context){
+            mLayoutInflater=LayoutInflater.from(context);
+        }
+       
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return imageIDs.length;
+        }
+
+        @Override
+        public Object getItem(int arg0) {
+            // TODO Auto-generated method stub
+            return arg0;
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            // TODO Auto-generated method stub
+            return arg0;
+        }
+
+        @Override
+        public View getView(int position, View converView, ViewGroup parent) {
+            ViewHolder mVHolder;
+            if(converView == null){
+                converView = mLayoutInflater.inflate(R.layout.custom_gridview, parent, false);
+                mVHolder = new ViewHolder();
+                mVHolder.mImageView = (ImageView)converView.findViewById(R.id.imgview);
+                mVHolder.mTextView = (TextView)converView.findViewById(R.id.text);
+                mVHolder.mImageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                mVHolder.mImageView.setPadding(8,8,8,8);
+                converView.setTag(mVHolder);
+            }else{
+                mVHolder = (ViewHolder)converView.getTag();
+            }
+            mVHolder.mImageView.setImageResource(imageIDs[position]);
+            mVHolder.mTextView.setText(TITLES[position]);
+           
+            return converView;
+        }
+       
+    }
+   
+    static class ViewHolder{
+        ImageView mImageView;
+        TextView mTextView;
+    }
 
 }
