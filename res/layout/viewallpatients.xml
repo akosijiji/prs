@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F8E0E6">
-
+        
     <AutoCompleteTextView
         android:padding="5dp"
         android:background="@drawable/rounded_edittext"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_margin="10dp"
-        android:drawableLeft="@drawable/search_small" >
+        android:drawableLeft="@drawable/search" >
         <requestFocus />
     </AutoCompleteTextView>
     

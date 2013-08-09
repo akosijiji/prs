@@ -211,7 +211,29 @@ public class DBHelper extends SQLiteOpenHelper{
         }
     }
 	
-	public long insert( String fname, String lname, String bday, String telno, String lastffup,
+	public Cursor fetchPatientsByName(CharSequence inputText) throws SQLException {
+		  
+		  Cursor mCursor = null;
+		  if (inputText == null  ||  inputText.length () == 0)  {
+		   mCursor = myDataBase.query(DB_TABLE, new String[] { KEY_ID, KEY_FNAME + "|| ' ' ||" 
+		  + KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP },
+		     null, null, null, null, null);
+		 
+		  }
+		  else {
+		   mCursor = myDataBase.query(true, DB_TABLE, new String[] { KEY_ID, KEY_FNAME + "|| ' ' ||" 
+		  + KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP },
+		     KEY_FNAME + " like '%" + inputText + "%'", null,
+		     null, null, null, null);
+		  }
+		  if (mCursor != null) {
+		   mCursor.moveToFirst();
+		  }
+		  return mCursor;
+		 
+		 }
+	
+	public long createEntry( String fname, String lname, String bday, String telno, String lastffup,
 			String diagnosis, String bp, String heart, String diabetes, String lung, String brain,
 			String muscle, String abdomen, String urine, String gout, String prescription ) {
 		// TODO Auto-generated method stub

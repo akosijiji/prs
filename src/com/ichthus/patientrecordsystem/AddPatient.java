@@ -120,7 +120,7 @@ public class AddPatient extends Activity implements OnClickListener {
 			strGout = gout.getText().toString();
 			strPrescription = prescription.getText().toString();
 			
-			saveRecord.insert(strFname, strLname, strBday, strTelphone, strLastffup, strDiagnosis, 
+			saveRecord.createEntry(strFname, strLname, strBday, strTelphone, strLastffup, strDiagnosis, 
 					strBP, strHeart, strDiabetes, strLung, strBrain, 
 					strMuscle, strAbdomen, strUrine, strGout, strPrescription);
 			Toast.makeText(this, "Patient has been added successfully!", Toast.LENGTH_SHORT).show();

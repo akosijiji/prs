@@ -1,7 +1,6 @@
 package com.ichthus.patientrecordsystem;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,9 +21,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.FilterQueryProvider;
 import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ViewAllPatients extends Activity implements OnItemClickListener {
 	
@@ -35,9 +36,9 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 	Cursor cursor;
 	String[] search;
 	CustomAdapter ca;
-	int textlength = 0;
-	ArrayList<String> text_sort = new ArrayList<String>();
 	ArrayAdapter<String> ad;
+	Typeface tf;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,18 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 		displayResults();
 	}
 
+	@Override
+	public void onItemClick(AdapterView<?> lv, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		   // Get the cursor, positioned to the corresponding row in the result set
+		   Cursor cursor = (Cursor) lv.getItemAtPosition(position);
+		 
+		   
+		   String fname = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_FNAME));
+		   Toast.makeText(getApplicationContext(),
+		     fname, Toast.LENGTH_SHORT).show();
+	}
+	
 	private void displayResults(){
 		
 		dbHelper = new DBHelper(this);
@@ -94,8 +107,9 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
         tv = (AutoCompleteTextView) findViewById (R.id.etSearch);
 		
         search = dbHelper.getAllItemFilter();
-        lv.setAdapter(ca);
+        lv.setAdapter(ca); 
         lv.setTextFilterEnabled(true);
+        lv.setFastScrollEnabled(true);
 
 		   // Print out the values to the log
 	       for(int i = 0; i < search.length; i++)
@@ -107,50 +121,30 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 		   tv.setAdapter( ad );
 		   tv.setTextColor( Color.BLACK );
 		   
-		     /**
-	         * Enabling Search Filter
-	         * */
-			 tv.addTextChangedListener(new TextWatcher() {
-	            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-	                    
-	            	    
-	            }
-	            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-	                    int arg3) {
-	                // TODO Auto-generated method stub
-	            }
-	            public void afterTextChanged(Editable arg0) {
-	                // TODO Auto-generated method stub
-	            	// When user changed the Text
-            	 	textlength = tv.getText().length();
-            	    text_sort.clear();
-
-            	    for(int i=0; i < search.length; i++)
-            	    {
-            	     if (textlength <= search[i].length())
-            	     {
-            	      if (tv.getText().toString().
-            	   equalsIgnoreCase((String) search[i].subSequence(0, textlength)))
-            	      {
-            	       text_sort.add( search[i] );
-            	      }
-            	     }
-            	    }
-            	    
-            	    lv.setAdapter(ad);
-	            }
-	        });
-
-        dbHelper.close();
-        
+		   tv.addTextChangedListener(new TextWatcher() {
+			   public void afterTextChanged(Editable s) {
+			   }
+			 
+			   public void beforeTextChanged(CharSequence s, int start,
+			     int count, int after) {
+			   }
+			 
+			   public void onTextChanged(CharSequence s, int start,
+			     int before, int count) {
+			    ca.getFilter().filter(s.toString());
+			   }
+			  });
+			   
+			  ca.setFilterQueryProvider(new FilterQueryProvider() {
+			         public Cursor runQuery(CharSequence constraint) {
+			             return dbHelper.fetchPatientsByName(constraint.toString());
+			         }
+			     });
+		   
+	    //dbHelper.close();
+  
 	}
-	
-	@Override
-	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 	public class CustomAdapter extends CursorAdapter implements Filterable
 	{
 		LayoutInflater inflater;
@@ -159,7 +153,7 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 			super(context, c);
 			inflater = LayoutInflater.from(context);
 	}
-	 
+
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 		// TODO Auto-generated method stub
@@ -167,7 +161,7 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 		TextView tv2 = (TextView)view.findViewById(R.id.lastffup);
 		TextView tv3 = (TextView)view.findViewById(R.id.diagnosis);
 		
-		Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/roboto-regular.ttf");
+		tf = Typeface.createFromAsset(getAssets(), "fonts/roboto-regular.ttf");
 		
 		tv1.setTypeface(tf);
 		tv2.setTypeface(tf);
@@ -177,7 +171,7 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 		int mCount = cursor.getCount();
 		
 		if (position == 0 && mCount == 1) {
-            view.setBackgroundResource(R.drawable.selector_rounded_corner_top);
+            view.setBackgroundResource(R.drawable.selector_rounded_corner_top_bottom);
         } else if (position == 0) {
             view.setBackgroundResource(R.drawable.selector_rounded_corner_top);
         } else if (position == mCount - 1) {
@@ -199,5 +193,15 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 		return inflater.inflate(R.layout.custom_row, parent, false);
 	 }
 	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		dbHelper.close();
+		super.onDestroy();
+	}
+	
+	
+	
 	
 }

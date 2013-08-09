@@ -8,7 +8,7 @@
     <string name="addpatient">Add Patient</string>
     <string name="welcomenote">Patient Records for Medical Professionals</string>
     <string name="searchfirstname">Search firstname</string>
-    <string name="fullname">Name:</string>
+    <string name="fullname">Name</string>
     <string name="firstname">Firstname:</string>
     <string name="lastname">Lastname:</string>
     <string name="bday">Birthday:</string>

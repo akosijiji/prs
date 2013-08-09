@@ -28,10 +28,10 @@ public class MainActivity extends Activity {
 	};
 	
 	static Integer imageIDs[] = {
-			R.drawable.medical_record_xlarge,
-			R.drawable.medicine_xlarge,
-			R.drawable.medical_record_xlarge,
-			R.drawable.medicine_xlarge
+			R.drawable.medical_record,
+			R.drawable.medicine,
+			R.drawable.medical_record,
+			R.drawable.medicine
 	};
 
 	@Override
