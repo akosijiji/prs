@@ -64,10 +64,9 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> lv, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		   // Get the cursor, positioned to the corresponding row in the result set
-		   Cursor cursor = (Cursor) lv.getItemAtPosition(position);
-		 
-		   
-		   String fname = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_FNAME));
+		   cursor = (Cursor) lv.getItemAtPosition(position);
+		
+		   String fname = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_FNAME + "|| ' ' ||" + DBHelper.KEY_LNAME));
 		   Toast.makeText(getApplicationContext(),
 		     fname, Toast.LENGTH_SHORT).show();
 	}
