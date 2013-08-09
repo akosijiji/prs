@@ -12,15 +12,14 @@ import android.widget.TextView;
 
 import com.viewpagerindicator.TabPageIndicator;
 
-public class Test extends Activity{
+public class Test extends Activity {
     //these are the titles that will appear on the "tabs"
-final String[] page_titles = new String[]{"Personal Info", "Diagnosis", "Medications" };
-//this will go the description TextView
+	final String[] page_titles = new String[]{"Personal Info", "Diagnosis", "Medications" };
+    //this will go the description TextView
     final String[] desc = new String[]{
         "This is the homepage the first one you will see.",
         "I'm pretty much me for now I run this really cool blog you should check it out at mycodeandlife.wordpress.com",
-        "I build appps mostly for fun. If you ever want an app just holla"
-};
+        "I build appps mostly for fun. If you ever want an app just holla"};
 @Override
 public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

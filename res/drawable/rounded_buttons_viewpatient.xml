@@ -10,8 +10,8 @@ android:shape="rectangle" android:padding="2dp">
   	 android:topRightRadius="7dp"/>
     
     <gradient
-    android:startColor="#FE2E2E"
-    android:endColor="#FE2E2E" />
+    android:startColor="#FFF"
+    android:endColor="#FFF" />
     
     <stroke android:width="0.5dp" android:color="#DF0101"/>
     

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Color;
@@ -66,9 +67,18 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 		   // Get the cursor, positioned to the corresponding row in the result set
 		   cursor = (Cursor) lv.getItemAtPosition(position);
 		
-		   String fname = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_FNAME + "|| ' ' ||" + DBHelper.KEY_LNAME));
+		   String fname = cursor.getString(cursor.getColumnIndexOrThrow(
+				   DBHelper.KEY_FNAME + "|| ' ' ||" + DBHelper.KEY_LNAME));
+		   String lastffup = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_LASTFFUP));
+		   String diagnosis = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.KEY_DIAGNOSIS));
 		   Toast.makeText(getApplicationContext(),
 		     fname, Toast.LENGTH_SHORT).show();
+		  
+		   Intent i = new Intent(this, ViewPatient.class);
+		   i.putExtra("patientname", fname);
+		   i.putExtra("lastffup", lastffup);
+		   i.putExtra("diagnosis", diagnosis);
+		   startActivityForResult(i, 1);
 	}
 	
 	private void displayResults(){
