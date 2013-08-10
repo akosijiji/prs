@@ -17,7 +17,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -45,7 +44,6 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.viewallpatients);
 		
 		initControls();
@@ -75,9 +73,11 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 		     fname, Toast.LENGTH_SHORT).show();
 		  
 		   Intent i = new Intent(this, ViewPatient.class);
-		   i.putExtra("patientname", fname);
-		   i.putExtra("lastffup", lastffup);
-		   i.putExtra("diagnosis", diagnosis);
+		   Bundle extras = new Bundle();
+		   extras.putString("patientname", fname);
+		   extras.putString("lastffup", lastffup);
+		   extras.putString("diagnosis", diagnosis);
+		   i.putExtras(extras);
 		   startActivityForResult(i, 1);
 	}
 	
@@ -150,7 +150,6 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 			         }
 			     });
 		   
-	    //dbHelper.close();
   
 	}
 

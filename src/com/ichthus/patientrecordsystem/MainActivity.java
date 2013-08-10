@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -24,7 +23,7 @@ public class MainActivity extends Activity {
 		"Sample", 
 		"Add Patient",
 		"View Patients",
-		"View Patients"
+		"Update Patient"
 	};
 	
 	static Integer imageIDs[] = {
@@ -37,7 +36,6 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		
 		initControls();
@@ -68,8 +66,8 @@ public class MainActivity extends Activity {
 	       					startActivity(viewall);
 	       					break;
 	       				case 3:
-	       					Intent test = new Intent(MainActivity.this, ViewPatient.class);
-	       					startActivity(test);
+	       					Intent update = new Intent(MainActivity.this, UpdatePatient.class);
+	       					startActivity(update);
 	       					break;
 	       			} 
 	           }

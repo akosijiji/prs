@@ -1,6 +1,5 @@
 package com.ichthus.patientrecordsystem;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -24,8 +23,6 @@ public class ViewPatient extends SherlockFragmentActivity {
 		// Sets the Layout
 		setContentView(R.layout.view_patient);
 		
-		passActivityResult();
-		
 		// Activate Navigation Mode Tabs
         mActionBar = getSupportActionBar();
         mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -35,6 +32,13 @@ public class ViewPatient extends SherlockFragmentActivity {
  
         // Activate Fragment Manager
         FragmentManager fm = getSupportFragmentManager();
+        
+        /*
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        
+        FragmentTabPatientInfo tab1 = new FragmentTabPatientInfo(); 
+        fragmentTransaction.add(R.id.tvPatientName, tab1); 
+        fragmentTransaction.commit(); */
  
         // Capture ViewPager page swipes
         ViewPager.SimpleOnPageChangeListener ViewPagerListener = new ViewPager.SimpleOnPageChangeListener() {
@@ -85,37 +89,6 @@ public class ViewPatient extends SherlockFragmentActivity {
         mActionBar.addTab(tab);
  	
 	}
-
-	private void passActivityResult() {
-		// TODO Auto-generated method stub
-		Intent i = getIntent();
-		String patientName = i.getStringExtra("patientname");
-		String patientLastFFUp = i.getStringExtra("lastffup");
-		String patientDiagnosis = i.getStringExtra("diagnosis");
-		//name.setText(patientName);
-		//lastffup.setText(patientLastFFUp);
-		//tvdiagnosis.setText(patientDiagnosis);
-		
-		Intent in = new Intent(this, FragmentTabPatientInfo.class);
-		in.putExtra("patientname", patientName);
-		in.putExtra("lastffup", patientLastFFUp);
-		in.putExtra("diagnosis", patientDiagnosis);
-		startActivityForResult(i, 1);
-	}
-
-	/*
-	private void displayPatientRecord() {
-		// TODO Auto-generated method stub
-		Intent i = getIntent();
-		String patientName = i.getStringExtra("patientname");
-		String patientLastFFUp = i.getStringExtra("lastffup");
-		String patientDiagnosis = i.getStringExtra("diagnosis");
-		name.setText(patientName);
-		lastffup.setText(patientLastFFUp);
-		tvdiagnosis.setText(patientDiagnosis);	        
-	} */
-	
-	
 
 
 }
