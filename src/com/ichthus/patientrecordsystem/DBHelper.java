@@ -215,14 +215,14 @@ public class DBHelper extends SQLiteOpenHelper{
 		  
 		  Cursor mCursor = null;
 		  if (inputText == null  ||  inputText.length () == 0)  {
-		   mCursor = myDataBase.query(DB_TABLE, new String[] { KEY_ID, KEY_FNAME + "|| ' ' ||" 
-		  + KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP },
+		   mCursor = myDataBase.query(DB_TABLE, new String[] { KEY_ID, KEY_FNAME, KEY_LNAME, 
+				   KEY_DIAGNOSIS, KEY_LASTFFUP },
 		     null, null, null, null, null);
 		 
 		  }
 		  else {
-		   mCursor = myDataBase.query(true, DB_TABLE, new String[] { KEY_ID, KEY_FNAME + "|| ' ' ||" 
-		  + KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP },
+		   mCursor = myDataBase.query(true, DB_TABLE, new String[] { KEY_ID, KEY_FNAME, 
+				   KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP },
 		     KEY_FNAME + " like '%" + inputText + "%'", null,
 		     null, null, null, null);
 		  }
@@ -231,7 +231,7 @@ public class DBHelper extends SQLiteOpenHelper{
 		  }
 		  return mCursor;
 		 
-		 }
+	}
 	
 	public long createEntry( String fname, String lname, String bday, String telno, String lastffup,
 			String diagnosis, String bp, String heart, String diabetes, String lung, String brain,
@@ -260,12 +260,12 @@ public class DBHelper extends SQLiteOpenHelper{
 		
 	}
 
-	public void updateEntry( long lId, String mFname ) {
+	public void updateEntry( long lId, String mFname ) { 
 		// TODO Auto-generated method stub
 		ContentValues cvUpdate = new ContentValues();
 		
 		cvUpdate.put(KEY_FNAME, mFname);
-		myDataBase.update(DB_TABLE, cvUpdate, KEY_ID + " = lId", null);
+		myDataBase.update(DB_TABLE, cvUpdate, KEY_ID + " = " + lId, null);
 	}
 
 

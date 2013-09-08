@@ -37,5 +37,7 @@
     <string name="gout">Gout</string>
     <string name="vaccination">Vaccination</string>
     <string name="updatepatient">Edit Patient</string>
+    <string name="sortby">Sort by</string>
+    <string name="search">Search</string>
 
 </resources>

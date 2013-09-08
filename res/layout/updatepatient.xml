@@ -36,6 +36,18 @@
         android:text="@string/updatepatient"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <ImageButton
+        android:id="@+id/btSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="27dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:background="@drawable/search"
+        android:contentDescription="@string/search"
+        android:padding="10dp"
+        android:textColor="@color/black" />
+
 </RelativeLayout>
 
     <ScrollView 

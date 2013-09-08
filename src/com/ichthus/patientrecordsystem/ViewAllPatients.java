@@ -16,18 +16,22 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.FilterQueryProvider;
 import android.widget.Filterable;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ViewAllPatients extends Activity implements OnItemClickListener {
+public class ViewAllPatients extends Activity implements OnItemClickListener, OnItemSelectedListener, OnClickListener {
 	
 	AutoCompleteTextView tv;
 	ListView lv;
@@ -38,6 +42,12 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 	CustomAdapter ca;
 	ArrayAdapter<String> ad;
 	Typeface tf;
+	Spinner spinner;
+	Button home;
+	
+	final String[] categories = {
+			"Firstname", "Lastname", "Last check up"
+	};
 
 	
 	@Override
@@ -52,9 +62,16 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 	
 	private void initControls(){
 		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String> 
+			(this,android.R.layout.simple_spinner_item, categories);
+		spinner = (Spinner) findViewById (R.id.spCategory);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
 		lv = (ListView) findViewById (R.id.lvListOfPatients);
 		lv.setOnItemClickListener(this);
 		lv.setTextFilterEnabled(true);
+		home = (Button) findViewById (R.id.btHome);
+		home.setOnClickListener(this);
 
 		displayResults();
 	}
@@ -207,6 +224,27 @@ public class ViewAllPatients extends Activity implements OnItemClickListener {
 		// TODO Auto-generated method stub
 		dbHelper.close();
 		super.onDestroy();
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View v, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		switch(position){
+		
+		}
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		finish();
 	}
 	
 	
