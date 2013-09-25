@@ -182,47 +182,26 @@ public class DBHelper extends SQLiteOpenHelper{
 	{
 	    Cursor localCursor = //  
 	    		this.myDataBase.query(DB_TABLE, new String[] { 
-	    				KEY_ID, KEY_FNAME + "|| ' ' ||" + KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP }, null, null, null, null, null);
-
+	    		//		KEY_ID, KEY_FNAME + "|| ' ' ||" + KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP }, null, null, null, null, null);
+	    				KEY_ID, KEY_FNAME, KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP }, null, null, null, null, null);
+	    				
 	    if (localCursor != null)
 	      localCursor.moveToFirst();
 	    return localCursor;
 	}
 	
-	public String[] getAllItemFilter()
-    {
-        Cursor cursor = this.myDataBase.query(DB_TABLE, new String[] {KEY_FNAME}, null, null, null, null, null);
-
-        if(cursor.getCount() >0)
-        {
-            String[] str = new String[cursor.getCount()];
-            int i = 0;
-
-            while (cursor.moveToNext())
-            {
-                 str[i] = cursor.getString(cursor.getColumnIndex(KEY_FNAME));
-                 i++;
-             }
-            return str;
-        }
-        else
-        {
-            return new String[] {};
-        }
-    }
-	
 	public Cursor fetchPatientsByName(CharSequence inputText) throws SQLException {
 		  
 		  Cursor mCursor = null;
 		  if (inputText == null  ||  inputText.length () == 0)  {
-		   mCursor = myDataBase.query(DB_TABLE, new String[] { KEY_ID, KEY_FNAME, KEY_LNAME, 
-				   KEY_DIAGNOSIS, KEY_LASTFFUP },
+		   mCursor = myDataBase.query(DB_TABLE, new String[] { 
+				   KEY_ID, KEY_FNAME, KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP },
 		     null, null, null, null, null);
 		 
 		  }
 		  else {
-		   mCursor = myDataBase.query(true, DB_TABLE, new String[] { KEY_ID, KEY_FNAME, 
-				   KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP },
+		   mCursor = myDataBase.query(true, DB_TABLE, new String[] { 
+				   KEY_ID, KEY_FNAME, KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP  },
 		     KEY_FNAME + " like '%" + inputText + "%'", null,
 		     null, null, null, null);
 		  }
@@ -231,6 +210,42 @@ public class DBHelper extends SQLiteOpenHelper{
 		  }
 		  return mCursor;
 		 
+	}
+
+	public Cursor sortByFname()
+	{
+	    Cursor localCursor =
+	    		this.myDataBase.query(DB_TABLE, new String[] { 
+	    				KEY_ID, KEY_FNAME, KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP }, 
+	    				null, null, null, null, KEY_FNAME + " ASC");
+	    				
+	    if (localCursor != null)
+	      localCursor.moveToFirst();
+	    return localCursor;
+	}
+	
+	public Cursor sortByLname()
+	{
+	    Cursor localCursor =
+	    		this.myDataBase.query(DB_TABLE, new String[] { 
+	    				KEY_ID, KEY_FNAME, KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP }, 
+	    				null, null, KEY_FNAME, null, KEY_LNAME + " ASC");
+	    				
+	    if (localCursor != null)
+	      localCursor.moveToFirst();
+	    return localCursor;
+	}
+	
+	public Cursor sortByLastFFUp()
+	{
+	    Cursor localCursor =
+	    		this.myDataBase.query(DB_TABLE, new String[] { 
+	    				KEY_ID, KEY_FNAME, KEY_LNAME, KEY_DIAGNOSIS, KEY_LASTFFUP }, 
+	    				null, null, KEY_LNAME, null, KEY_LASTFFUP + " DESC");
+	    				
+	    if (localCursor != null)
+	      localCursor.moveToFirst();
+	    return localCursor;
 	}
 	
 	public long createEntry( String fname, String lname, String bday, String telno, String lastffup,

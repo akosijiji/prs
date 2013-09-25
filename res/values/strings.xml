@@ -39,5 +39,6 @@
     <string name="updatepatient">Edit Patient</string>
     <string name="sortby">Sort by</string>
     <string name="search">Search</string>
+    <string name="search_title">Search</string>
 
 </resources>

@@ -38,9 +38,10 @@ public class FragmentTabPatientInfo extends SherlockFragment {
 	        Bundle b = getActivity().getIntent().getExtras();
 	        
 			String patientName = b.getString("patientname"); 
+			String patientLName = b.getString("patientLname"); 
 			String patientLastFFUp = b.getString("lastffup");
 			((TextView)view.findViewById(R.id.tvPatientName)).setTypeface(tf);
-			((TextView)view.findViewById(R.id.tvPatientName)).setText(patientName);
+			((TextView)view.findViewById(R.id.tvPatientName)).setText(patientName + " " + patientLName);
 			((TextView)view.findViewById(R.id.tvPatientLastFFUp)).setText(patientLastFFUp);
 	        return view;
 	    }
