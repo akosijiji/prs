@@ -276,11 +276,13 @@ public class DBHelper extends SQLiteOpenHelper{
 	}
 
 	public void updateEntry( long lId, String mFname ) { 
-		// TODO Auto-generated method stub
+		
+		
 		ContentValues cvUpdate = new ContentValues();
 		
 		cvUpdate.put(KEY_FNAME, mFname);
 		myDataBase.update(DB_TABLE, cvUpdate, KEY_ID + " = " + lId, null);
+		
 	}
 
 

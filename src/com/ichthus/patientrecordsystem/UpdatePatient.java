@@ -176,6 +176,7 @@ public class UpdatePatient extends Activity implements OnClickListener {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		cursor.close();
 		dbHelper.close();
 	}
 	

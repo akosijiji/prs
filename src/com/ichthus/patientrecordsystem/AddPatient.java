@@ -137,7 +137,7 @@ public class AddPatient extends Activity implements OnClickListener {
 		lastname.setText("");
 		bday.setText("");
 		telphone.setText("");
-		lastffup.setText("");
+		
 		diagnosis.setText("");
 		bp.setText("");
 		heart.setText("");
